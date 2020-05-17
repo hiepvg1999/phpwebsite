@@ -8,8 +8,11 @@
 </head>
 <body>
 	<?php 
-    $con = mysqli_connect('localhost','root');
-    mysqli_select_db($con,'myuserinfodata');
+    $con = mysqli_connect('localhost','root','','myuserinfodata');
+    if($con){
+    }else{
+	  die("No connect");
+    }
     ?>
 	<div class="container-fluid">
 		<div class="row">

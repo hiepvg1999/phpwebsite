@@ -37,12 +37,15 @@
     </form>
   </div>
 </nav>
-
+	
 	<?php 
 		$index = $_GET['id'];
-		//echo $index.'<br>';
-		$con = mysqli_connect('localhost','root');
-        mysqli_select_db($con,'myuserinfodata');
+		
+		$con = mysqli_connect('localhost','root','','myuserinfodata');
+        if($con){
+        }else{
+	    die("No connect");
+        }
 		$query = "select * from  `servicedata` where `id`=$index;";
         $sq=mysqli_query($con, $query);
         $arr = mysqli_fetch_array($sq);
@@ -93,10 +96,10 @@
 	 					var link = document.location.href;
 	 					var url = new URL(link);
 	 					var  id=url.searchParams.get("id");
-	 					var re_link ="http://localhost:8888/website/payment.php?serviceid="+id+"&type=0";
+	 					var re_link ="http://localhost:8080/website/payment.php?serviceid="+id+"&type=0";
 	 					function takevalue(){
 	 					var	select_value = document.getElementById('Select_trip').value;
-	 						re_link ="http://localhost:8888/website/payment.php?serviceid="+id+"&type="+select_value;
+	 						re_link ="http://localhost:8080/website/payment.php?serviceid="+id+"&type="+select_value;
 	 					}
 	 					
 	 					function redirect() {
@@ -119,24 +122,10 @@
 	</div>	
 	</section>
 	<br>
-	<section class="my-5">
-		<h2 align="center"><a href="#">Comment system using PHP and JQUERY</a></h2>
-		<div class="w-50 m-auto">
-			<form  method="POST" accept-charset="utf-8" id="comment_form">
-				<div class="form-group">
-					<input type="text" name="comment_name" id="comment_name" class="form-control" placeholder="Enter name">
-				</div>
-				<div class="form-group">
-					<textarea name="comment_content" id="comment_content" class="form-control" placeholder="Enter comment" rows="5"></textarea>
-				</div>
-				<div class="form-group">
-					<input type="submit" name="submit" id="submit" value="Submit" class="btn btn-info">
-				</div>
-			</form>
-		</div>	
-	</section>
+	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </body>
 </html>
+

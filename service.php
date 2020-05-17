@@ -5,8 +5,11 @@
 </head>
 <body>
 <?php 
-$con = mysqli_connect('localhost','root');
-mysqli_select_db($con,'myuserinfodata');
+$con = mysqli_connect('localhost','root','','myuserinfodata');
+if($con){
+}else{
+  die("No connect");
+}
 $query = "select count(id) as `sl` from `servicedata`;";
 $scount=mysqli_query($con, $query);
 $arr = mysqli_fetch_array($scount);
@@ -32,15 +35,26 @@ if(is_array($arr)){
       <div class="col-lg-4 col-md-4 col-12">
         <div class="card" style="width:400px">
           <a href="<?php echo 'service_chitiet.php?id='.$i ?>" target="_blank">
-            <img class="card-img-top" src="<?php echo 'img/'.$img_src; ?>" alt="<?php echo 'Card image '.$i ?>">
+            <img class="card-img-top" src="<?php echo 'img/'.$img_src; ?>" alt="<?php echo 'Card image '.$i ?>" style="height: 250px">
           </a>
           <div class="card-body">
             <h4 class="card-title"><?php echo $img_name; ?></h4>
             <p class="card-text" id="<?php echo $img_id; ?>"><?php echo 'Beautiful Place in VietNam .<br>'.substr($img_profile, 0,75).'<b>...</b>'; ?></p>
             <a href="<?php echo 'service_chitiet.php?id='.$i ?>" target="_blank" class="btn btn-primary" >See Profile</a>      
             </div>
-            </div>
+            </div>          
       </div>
+
 <?php } mysqli_close($con);?>
+      <div class="container-fluid">
+            <hr>
+            <ul class="pagination justify-content-center" style="margin:20px 0">
+              <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+              <li class="page-item active"><a class="page-link" href="#">1</a></li>
+              <li class="page-item"><a class="page-link" href="#">2</a></li>
+              <li class="page-item"><a class="page-link" href="#">3</a></li>
+              <li class="page-item"><a class="page-link" href="#">Next</a></li>
+            </ul>
+      </div>
 </body>
 </html>

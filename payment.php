@@ -16,8 +16,11 @@
 	$typetrip = $_GET['type'];
 	 ?>
 	<?php 
-    $con = mysqli_connect('localhost','root');
-    mysqli_select_db($con,'myuserinfodata');
+    $con = mysqli_connect('localhost','root','','myuserinfodata');
+    if($con){
+    }else{
+      die("No connect");
+    }
     if ($typetrip==0) {
     	$query = "select `name`,`price_normal` as `price` from `servicedata` where `id`=$serviceid;";
     } else if($typetrip==1){
@@ -60,17 +63,17 @@
     </form>
   </div>
 </nav>
-	
+<form action="PHPMailer/mail.php" method="post">	
 	<div class="row">
   <div class="col-75">
     <div class="container">
-      <form action="send_mail.php">
-
+        
         <div class="row">
           <div class="col-50">
+            
             <h3>Billing Address</h3>
             <label for="fname"><i class="fa fa-user"></i> Full Name</label>
-            <input type="text" id="fname" name="firstname" placeholder="John M. Doe">
+            <input type="text" id="fname" name="fullname" placeholder="John M. Doe">
             <label for="email"><i class="fa fa-envelope"></i> Email</label>
             <input type="text" id="email" name="email" placeholder="john@example.com">
             <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
@@ -89,7 +92,6 @@
               </div>
             </div>
           </div>
-
           <div class="col-50">
             <h3>Payment</h3>
             <label for="fname">Accepted Cards</label>
@@ -122,8 +124,7 @@
         <label>
           <input type="checkbox" checked="checked" name="sameadr"> Information correct ?
         </label>
-        <input type="submit" value="Continue to checkout" class="btn">
-      </form>
+        <input type="submit" name="checkout" value="Continue to checkout" class="btn">
     </div>
   </div>
 
@@ -131,8 +132,8 @@
     <div class="container">
       <h4>Cart
         <span class="price" style="color:black">
-          <i class="fa fa-shopping-cart"></i>
-          <b><input type="number" name="sl" id="sl" placeholder="1" min="1" style="width: 40px" onchange="take_value();"></b>
+          <i class="fa fa-shopping-cart"></i>  
+          <b><input type="number" name="sluong" id="sl" placeholder="1" min="1" style="width: 40px"></b>
         </span>
       </h4>
       
@@ -148,29 +149,18 @@
       			}
       		 ?>
       	</a> 
-      	<span class="price">
+      	<span class="price" name="pricepertrip">
       	<?php echo number_format($price).' VND'; ?>
         </span>
     </p>
       <hr>
-      <script>
-      	var sluong = 1;
-      	function take_value() {
-      		sluong = document.getElementById('sl').value;
-      	}
-      	function price_total(){
-      		var price_a_trip = <?php echo $price; ?>;
-      		var price_total = sluong * price_a_trip;
-      		//document.getElementById("price_total").innerHTML= price_total;
-      		//var b_tag = document.createElement('b');
-      		//b_tag.textContent = price_total;
-      		return price_total;
-      	}
-      </script>
-      <p><button onclick="price_total();">Total </button><!--<span class="price" id="price_total" style="color:black" ></span>--></p>
+      
+      <p><input type="checkbox" checked="checked" name="ok">Ok </p>
+      
     </div>
   </div>
 </div>
+</form>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>

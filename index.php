@@ -99,7 +99,7 @@
 
 	<div class="container-fluid">
 		<div class="row">
-			<?php include("service.php"); ?>
+			<?php include_once("service.php"); ?>
 		</div>
 	</div>
 </section>
@@ -108,35 +108,14 @@
 	<div class="py-5">
 		<h2 class="text-center" id="gallery">Our Gallery</h2>
 	</div>
-	<?php include("gallery.php"); ?>
+<?php include_once("gallery.php"); ?>
 </section>
 <section class="my-5" >
 	<div class="py-5">
 		<h2 class="text-center" id="contact">Our Contact</h2>
 	</div>	
-	<div class="w-50 m-auto">
-		<form action="userinfo.php" method="post" accept-charset="utf-8">
-			<div class="form-group">
-				<label>Username: </label>
-				<input type="text" id="user" name="user" autocomplete="off" class="form-control" placeholder="Nguyen Van A">
-			</div>
-			<div class="form-group">
-				<label>Email: </label>
-				<input type="text" id="email" name="email" autocomplete="off" class="form-control" placeholder="test@test.com">
-			</div>
-			<div class="form-group">
-				<label>Mobile: </label>
-				<input type="text" id="mobile" name="mobile" autocomplete="off" class="form-control" placeholder="0123456789">
-			</div>
-			<div class="form-group">
-				<label>Comment: </label>
-				<textarea id="comment" name="comment" class="form-control" rows="5"></textarea>
-			</div>
-			<div>
-				<button type="submit" class="btn btn-primary" name="submit" id="submit" onclick="save()">Submit</button>
-			</div>
-		</form>
-	</div>
+  <?php include_once("contact.php"); ?>
+
 </section>
 <footer>
 	<p class="p-3 bg-dark text-center text-white">@hiepkateboy</p>

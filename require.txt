@@ -1,0 +1,19 @@
+-phan trang 
+-comment
+-cookies,session
+
+
+<script>
+      	var sluong = 1;
+      	function take_value() {
+      		sluong = document.getElementById('sl').value;
+      	}
+      	function price_total(){
+      		var price_a_trip = <?php echo $price; ?>;
+      		var price_total = sluong * price_a_trip;
+      		//document.getElementById("price_total").innerHTML= price_total;
+      		//var b_tag = document.createElement('b');
+      		//b_tag.textContent = price_total;
+      		return price_total;
+      	}
+      </script>
